@@ -56,15 +56,15 @@ class Users(BaseModel):
         order_by = ('id', )
 
 
-# if __name__ == '__main__':
-#     u = Users()
-#     u.username = "ali"
-#     u.hash_password("123")
-#     u.enabled = 1
-#     u.save()
-#
-#     u = Users()
-#     u.username = "hassan"
-#     u.hash_password("123456")
-#     u.enabled = 1
-#     u.save()
+if __name__ == '__main__':
+    u = Users()
+    u.username = "ali"
+    u.hash_password("123")
+    u.enabled = 1
+    u.save()
+
+    u = Users()
+    u.username = "hassan"
+    u.hash_password("123456")
+    u.enabled = 1
+    u.save()
