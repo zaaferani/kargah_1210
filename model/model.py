@@ -56,6 +56,15 @@ class Users(BaseModel):
         order_by = ('id', )
 
 
+class Books(BaseModel):
+    id = PrimaryKeyField()
+    title = CharField(50)
+    author = CharField(30)
+    
+    class Meta:
+        db_table = "books"
+
+
 if __name__ == '__main__':
     u = Users()
     u.username = "ali"

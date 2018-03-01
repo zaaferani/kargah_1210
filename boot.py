@@ -3,9 +3,9 @@
 
 from flask import Flask, g
 from flask_restful import Api
-from controller import main
+from controller import main, book
 import env
-from model.model import database, Users
+from model.model import database, Users, Books
 
 app = Flask(__name__)
 app.secret_key = env.secret_key
@@ -17,10 +17,14 @@ api = Api(app)
 api.add_resource(main.Login, '/login', endpoint='login')
 api.add_resource(main.Main, '/', endpoint='index')
 
+api.add_resource(book.Insert, '/book/add', endpoint='book_add')
+api.add_resource(book.List, '/book/list', endpoint='book_list')
+api.add_resource(book.Remove, '/book/<int:b_id>', endpoint='book_delete')
+
 if __name__ == '__main__':
     database.connect()
 
-    database.create_tables([Users], True)
+    database.create_tables([Users, Books], True)
 
     app.run('0.0.0.0', 5000, True)
 

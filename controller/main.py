@@ -40,12 +40,21 @@ def verify_token(token):
 
 class Login(Resource):
     @auth.login_required
+    def get(self):
+        token = g.user.generate_auth_token(600)
+        return {'token': token.decode('ascii'), 'duration': 600}
+
+    @auth.login_required
     def post(self):
         token = g.user.generate_auth_token(600)
         return {'token': token.decode('ascii'), 'duration': 600}
 
 
 class Main(Resource):
+    @auth2.login_required
+    def get(self):
+        return dict(username=g.user.username, id=g.user.id)
+    
     @auth2.login_required
     def post(self):
         return dict(username=g.user.username, id=g.user.id)
